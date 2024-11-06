@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 
 app.post('/send-email', async (req, res) => {
-    const { email, subject, message } = req.body;
+    const { email, from, message } = req.body;
 
     // Nodemailer configuration
     let transporter = nodemailer.createTransport({
@@ -25,7 +25,7 @@ app.post('/send-email', async (req, res) => {
         to: 'pparthiv.human@gmail.com', 
         replyTo: email, 
         subject: `New message from ${email}`,
-        text: `Email: ${email}\nSubject: ${subject}\nMessage: ${message}`
+        text: `From: ${from}\nEmail: ${email}\nMessage: ${message}`
     };
 
     try {
